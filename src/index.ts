@@ -28,8 +28,11 @@ function requireEnv(name: string): string {
 }
 
 function requireInput(name: string, fallbackEnv?: string): string {
-  const inputKey = `INPUT_${name.toUpperCase().replace(/-/g, '_')}`;
-  const v = process.env[inputKey] || (fallbackEnv ? process.env[fallbackEnv] : undefined);
+  const upper = name.replace(/ /g, '_').toUpperCase();
+  const v =
+    process.env[`INPUT_${upper}`] ||
+    process.env[`INPUT_${upper.replace(/-/g, '_')}`] ||
+    (fallbackEnv ? process.env[fallbackEnv] : undefined);
   if (!v) throw new Error(`Missing required action input: ${name}`);
   return v;
 }
