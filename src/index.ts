@@ -27,9 +27,16 @@ function requireEnv(name: string): string {
   return v;
 }
 
+function requireInput(name: string, fallbackEnv?: string): string {
+  const inputKey = `INPUT_${name.toUpperCase().replace(/-/g, '_')}`;
+  const v = process.env[inputKey] || (fallbackEnv ? process.env[fallbackEnv] : undefined);
+  if (!v) throw new Error(`Missing required action input: ${name}`);
+  return v;
+}
+
 async function main(): Promise<void> {
-  const githubToken = requireEnv('GITHUB_TOKEN');
-  const anthropicApiKey = requireEnv('ANTHROPIC_API_KEY');
+  const githubToken = requireInput('github-token', 'GITHUB_TOKEN');
+  const anthropicApiKey = requireInput('anthropic-api-key', 'ANTHROPIC_API_KEY');
   const eventPath = requireEnv('GITHUB_EVENT_PATH');
   const configPath = process.env.INPUT_CONFIG_PATH || '.ai-reviewer.yml';
 
