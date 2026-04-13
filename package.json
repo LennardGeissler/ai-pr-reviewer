@@ -1,0 +1,32 @@
+{
+  "name": "ai-pr-reviewer",
+  "version": "0.1.0",
+  "description": "Self-hosted AI PR reviewer GitHub Action powered by Claude",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build src/index.ts -o dist --minify",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.40.0",
+    "@octokit/rest": "^21.0.0",
+    "yaml": "^2.5.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.0",
+    "@types/node": "^20.14.0",
+    "@vercel/ncc": "^0.38.1",
+    "nock": "^13.5.4",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
