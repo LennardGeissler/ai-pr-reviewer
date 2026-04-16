@@ -1,0 +1,29 @@
+name: Feature request
+description: Propose a new capability or enhancement
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What are you trying to accomplish? What doesn't work today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      description: This Action focuses on bug/security/performance review. Style/formatting feedback is intentionally out of scope.
+      options:
+        - label: My request is aligned with the project scope described in the README.
+          required: true

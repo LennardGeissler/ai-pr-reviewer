@@ -1,0 +1,46 @@
+name: Bug report
+description: Report a reproducible problem with the Action
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Action version / SHA
+      placeholder: "v0.1.0 or commit SHA"
+    validations:
+      required: true
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Workflow snippet
+      description: The relevant step(s) from your `.github/workflows/*.yml`. Redact secrets.
+      render: yaml
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: From the Action run. Redact tokens and any proprietary code.
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues and did not find a duplicate.
+          required: true
+        - label: This is not a security vulnerability (those go through SECURITY.md).
+          required: true

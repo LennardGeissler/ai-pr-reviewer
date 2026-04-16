@@ -1,0 +1,45 @@
+name: Release
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - name: Verify dist/ is up to date
+        run: |
+          if [ -n "$(git status --porcelain dist/)" ]; then
+            echo "dist/ is out of date for this tag. Rebuild and re-tag."
+            git diff dist/
+            exit 1
+          fi
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            --title "${GITHUB_REF_NAME}" \
+            --generate-notes
+      - name: Move major tag
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          major="${tag%%.*}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -f "${major}" "${tag}"
+          git push origin "${major}" --force

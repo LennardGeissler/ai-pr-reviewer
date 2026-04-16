@@ -1,5 +1,9 @@
 # AI PR Reviewer
 
+[![CI](https://github.com/LennardGeissler/ai-pr-reviewer/actions/workflows/ci.yml/badge.svg)](https://github.com/LennardGeissler/ai-pr-reviewer/actions/workflows/ci.yml)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/LennardGeissler/ai-pr-reviewer/badge)](https://securityscorecards.dev/viewer/?uri=github.com/LennardGeissler/ai-pr-reviewer)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Self-hosted GitHub Action that reviews pull requests with Claude. Bring your own Anthropic API key.
 
 ## Quickstart
