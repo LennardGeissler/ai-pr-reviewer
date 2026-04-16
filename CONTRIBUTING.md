@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in improving AI PR Reviewer.
+Thanks for your interest in improving Claude PR Reviewer.
 
 ## Development setup
 
