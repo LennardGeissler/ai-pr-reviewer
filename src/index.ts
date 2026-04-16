@@ -85,8 +85,8 @@ async function main(): Promise<void> {
 
   const body =
     inline.length === 0
-      ? 'Claude PR Reviewer: no issues found above the configured severity threshold.'
-      : `Claude PR Reviewer found ${inline.length} issue(s):\n\n${summaryLines.join('\n')}`;
+      ? 'Claude PR Auditor: no issues found above the configured severity threshold.'
+      : `Claude PR Auditor found ${inline.length} issue(s):\n\n${summaryLines.join('\n')}`;
 
   await postReview(octokit, repo.owner.login, repo.name, pr.number, pr.head.sha, body, inline);
   console.log(`Posted review with ${inline.length} inline comment(s).`);

@@ -1,6 +1,6 @@
-name: 'Claude PR Reviewer'
+name: 'Claude PR Auditor'
 description: 'Self-hosted AI PR review powered by Claude. Bring your own Anthropic API key.'
-author: 'Claude PR Reviewer Contributors'
+author: 'Claude PR Auditor Contributors'
 branding:
   icon: 'git-pull-request'
   color: 'purple'

@@ -1,4 +1,4 @@
-# Claude PR Reviewer
+# Claude PR Auditor
 
 [![CI](https://github.com/LennardGeissler/ai-pr-reviewer/actions/workflows/ci.yml/badge.svg)](https://github.com/LennardGeissler/ai-pr-reviewer/actions/workflows/ci.yml)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/LennardGeissler/ai-pr-reviewer/badge)](https://securityscorecards.dev/viewer/?uri=github.com/LennardGeissler/ai-pr-reviewer)
