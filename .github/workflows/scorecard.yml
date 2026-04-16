@@ -9,6 +9,7 @@ permissions: read-all
 jobs:
   analysis:
     runs-on: ubuntu-latest
+    if: github.event.repository.visibility == 'public'
     permissions:
       security-events: write
       id-token: write
