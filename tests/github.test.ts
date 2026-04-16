@@ -3,13 +3,7 @@ import { getAddedLines, matchesAnyGlob } from '../src/github.js';
 
 describe('getAddedLines', () => {
   it('returns added line numbers from a single hunk', () => {
-    const patch = [
-      '@@ -1,3 +1,4 @@',
-      ' line1',
-      '+added2',
-      ' line3',
-      '+added4',
-    ].join('\n');
+    const patch = ['@@ -1,3 +1,4 @@', ' line1', '+added2', ' line3', '+added4'].join('\n');
     const added = getAddedLines(patch);
     expect([...added].sort((a, b) => a - b)).toEqual([2, 4]);
   });

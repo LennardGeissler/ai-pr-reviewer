@@ -1,8 +1,8 @@
 import Anthropic from '@anthropic-ai/sdk';
 import type { Config } from './config.js';
 import { meetsSeverity } from './config.js';
-import { getAddedLines, type PRFile } from './github.js';
-import { parseReviewResponse, type ReviewComment } from './parser.js';
+import { type PRFile, getAddedLines } from './github.js';
+import { type ReviewComment, parseReviewResponse } from './parser.js';
 import { buildSystemPrompt, buildUserMessage } from './prompt.js';
 
 export interface FileReview {
@@ -65,14 +65,17 @@ export async function reviewFiles(
 ): Promise<FileReview[]> {
   const results: FileReview[] = [];
   const queue = [...files];
-  const workers = Array.from({ length: Math.min(config.max_concurrency, files.length) }, async () => {
-    while (queue.length > 0) {
-      const file = queue.shift();
-      if (!file) return;
-      const review = await reviewFile(client, config, file);
-      results.push(review);
-    }
-  });
+  const workers = Array.from(
+    { length: Math.min(config.max_concurrency, files.length) },
+    async () => {
+      while (queue.length > 0) {
+        const file = queue.shift();
+        if (!file) return;
+        const review = await reviewFile(client, config, file);
+        results.push(review);
+      }
+    },
+  );
   await Promise.all(workers);
   return results;
 }
